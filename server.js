@@ -2,7 +2,9 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const configureMongoose = require('./db/mongoose.js');
 
+const db = configureMongoose();
 const app = express();
 const config = require('./webpack.common.js');
 const compiler = webpack(config);

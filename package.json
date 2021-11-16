@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "html-webpack-plugin": "^5.5.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.13",
+    "mongoose-easy-auto-increment": "^1.0.1"
   }
 }
