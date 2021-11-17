@@ -15,6 +15,11 @@ app.use(
     })
 );
 app.use(webpackHotMiddleware(compiler))
+app.use(express.json());
+app.use(express.urlencoded());
+
+require('./server-side/routes/customers.server.routes')(app);
+require('./server-side/routes/medicines.server.routes')(app);
 
 // Serve the files on port 3000.
 app.listen(3000, function () {
