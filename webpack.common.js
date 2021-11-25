@@ -7,7 +7,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Production',
+            title: 'OTC',
+            template: path.resolve(__dirname,'src/template/index.html'),
+            filename: "index.html",
+            inject: 'body'
         }),
     ],
     output: {
@@ -19,6 +22,12 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: "babel-loader",
+                options: { presets: ["@babel/env"] }
+            },
+            {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
@@ -28,4 +37,5 @@ module.exports = {
             },
         ],
     },
+    resolve: { extensions: ["*", ".js", ".jsx"] },
 };
