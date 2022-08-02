@@ -10,6 +10,6 @@ const CustSchema = new Schema({
     customer_review: String
 });
 
-CustSchema.plugin(autoIncrement, { field: 'customer_id', collection: 'customers' });
+CustSchema.plugin(autoIncrement, { field: 'customer_id', collection: 'Counters' });
 
 mongoose.model('Customer', CustSchema);
