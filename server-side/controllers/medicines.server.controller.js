@@ -58,12 +58,12 @@ exports.listByMedId = function(req, res, next) {
 
     Medicine.findOne({ _id: req.params.medId })
         .exec((err, medicine) => {
-            if (err) {
-                return next(err);
+            if (err || medicine == null) {
+                return next(new Error(`Failed to find medicine by id: ${req.params.medId}`))
             } else {
                 Customer.find().where('_id').in(medicine.customers).exec((err, customers) => {
                     if (err) {
-                        return next(err);
+                        return next(new Error(`Failed to find Customers for medicine by id: ${req.params.medId}`))
                     } else {
                         res.status(200).json(customers);
                     }
@@ -91,7 +91,7 @@ exports.medicineByID = function(req, res, next, id) {
             req.medicine = medicine;
             next();
         }
-    });
+    }).populate('customers');
 };
 
 exports.update = function(req, res, next) {
