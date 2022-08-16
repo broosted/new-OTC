@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { fetchWrapper} from "../../fetch/fetchWrapper";
 
 export const medicineSlice = createSlice({
     name: 'medicines',
@@ -96,37 +97,37 @@ export const medicineSlice = createSlice({
 export const {medicineFetchAll, medicineUpdate, medicineCreate, medicineDelete, medicineFetchById, medicineFetchCustomersById, medicineAddCustomer} = medicineSlice.actions
 
 export const getMedicines = () => async (dispatch) => {
-    const response = await client.get('/medicines')
+    const response = await fetchWrapper.get('/medicines')
     dispatch(medicineFetchAll(response))
 }
 
 export const modifyMedicine = (medicine) => async (dispatch) => {
-    const response = await client.put(`/medicines/${medicine['_id']}`, medicine)
+    const response = await fetchWrapper.put(`/medicines/${medicine['_id']}`, medicine)
     dispatch(medicineUpdate(response))
 }
 
 export const addMedicine = (medicine) => async (dispatch) => {
-    const response = await client.post('/medicines', medicine)
+    const response = await fetchWrapper.post('/medicines', medicine)
     dispatch(medicineCreate(response))
 }
 
 export const removeMedicine = (id) => async (dispatch) => {
-    const response = await client.delete(`/medicines/${id}`)
+    const response = await fetchWrapper.delete(`/medicines/${id}`)
     dispatch(medicineDelete(response['_id']))
 }
 
 export const getMedicineById = (id) => async (dispatch) => {
-    const response = await client.get(`/medicines/${id}`)
+    const response = await fetchWrapper.get(`/medicines/${id}`)
     dispatch(medicineFetchById(response))
 }
 
 export const attachCustomerToMed = (med_id, cust_id) => async (dispatch) => {
-    const response = await client.post(`/medicines/${med_id}/customers/${cust_id}`)
+    const response = await fetchWrapper.post(`/medicines/${med_id}/customers/${cust_id}`)
     dispatch(medicineAddCustomer(response))
 }
 
 export const getCustomersForMed = (id) => async (dispatch) => {
-    const response = await client.get(`/medicines/${id}/customers`)
+    const response = await fetchWrapper.get(`/medicines/${id}/customers`)
     dispatch(medicineFetchCustomersById(response))
 }
 

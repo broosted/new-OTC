@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { fetchWrapper} from "../../fetch/fetchWrapper";
 
 export const customerSlice = createSlice({
     name: 'customers',
@@ -53,28 +54,28 @@ export const customerSlice = createSlice({
 export const { customerFetchAll, customerUpdate, customerCreate, customerDelete, customerFetchById} = customerSlice.actions
 
 export const getCustomers = () => async (dispatch) => {
-    const response = await client.get('/customers')
+    const response = await fetchWrapper.get('/customers')
     dispatch(customerFetchAll(response))
 }
 
 
 export const modifyCustomer = (customer) => async (dispatch) => {
-    const response = await client.put(`/customers/${customer['_id']}`, customer)
+    const response = await fetchWrapper.put(`/customers/${customer['_id']}`, customer)
     dispatch(customerUpdate(response))
 }
 
 export const addCustomer = (customer) => async (dispatch) => {
-    const response = await client.post('/customers', customer)
+    const response = await fetchWrapper.post('/customers', customer)
     dispatch(customerCreate(response))
 }
 
 export const removeCustomer = (id) => async (dispatch) => {
-    const response = await client.delete(`/customers/${id}`)
+    const response = await fetchWrapper.delete(`/customers/${id}`)
     dispatch(customerDelete(response['_id']))
 }
 
 export const getCustomerById = (id) => async (dispatch) => {
-    const response = await client.get(`/customers/${id}`)
+    const response = await fetchWrapper.get(`/customers/${id}`)
     dispatch(customerFetchById(response))
 }
 
