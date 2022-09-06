@@ -11,7 +11,7 @@ return(
                 <article className="uk-article">
                     <h3 className="uk-article-title">Media heading</h3>
                     <p className="uk-article-meta">
-                        {{medicine.medi_description}}
+                        medicine.medi_description
                     </p>
                 </article>
             </div>
