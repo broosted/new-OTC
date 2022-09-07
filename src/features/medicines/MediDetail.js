@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {MediDetailDetailsTab} from "./MediDetailDetailsTab";
+import {MediDetailReviews} from "./MediDetailReviews";
+import {Link, Route, Routes} from "react-router-dom";
 
-export function MediDetail() {
-return(
+
+export class MediDetail extends Component {
+
+    render() {
+        return (
     <div className="uk-container">
         <div className="uk-flex">
             <div className="uk-flex-1">
-                <div data-src="{{medicine.medi_img_url}}" uk-img></div>
+                <div data-src="{{medicine.medi_img_url}}"></div>
             </div>
             <div className="uk-flex-2">
                 <article className="uk-article">
@@ -16,15 +22,20 @@ return(
                 </article>
             </div>
         </div>
-        <nav className="uk-navbar-container" uk-navbar>
+        <nav className="uk-navbar-container">
             <div className="uk-navbar-left">
                 <ul className="uk-navbar-nav">
-                    <li className="uk-active"><a data-toggle="tab" routerLink="detail" routerLinkActive="active">Detail</a></li>
-                    <li><a data-toggle="tab" routerLink="reviews" routerLinkActive="active">Reviews</a></li>
+                    <li className="uk-active"><Link to="details">Details</Link></li>
+                    <li><Link to="reviews">Reviews</Link></li>
                 </ul>
             </div>
-            <router-outlet></router-outlet>
         </nav>
+        <div className="uk-container">
+            <Routes>
+                <Route path="details" element={<MediDetailDetailsTab />} />
+                <Route path="reviews" element={<MediDetailReviews />} />
+            </Routes>
+        </div>
     </div>
-)
+)}
 }

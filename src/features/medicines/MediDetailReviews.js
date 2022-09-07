@@ -4,12 +4,12 @@ export function MediDetailReviews() {
     return (
         <div className="uk-container">
 
-            <!-- This is a button toggling the modal -->
+
             <button uk-toggle="target: #my-id" type="button">Post a Review</button>
 
-            <!-- This is the modal -->
-            <div id="my-id" uk-modal>
-                <div class="uk-modal-dialog uk-margin-auto-vertical">
+
+            <div id="my-id" className="uk-modal">
+                <div className="uk-modal-dialog uk-margin-auto-vertical">
                     <div className="uk-modal-header">
                         <h2 className="uk-modal-title">Post a Review</h2>
                     </div>
@@ -33,7 +33,7 @@ export function MediDetailReviews() {
                 </div>
             </div>
 
-            <div uk-grid>
+            <div className="uk-grid">
                 <div className="uk-card uk-card-body">
                     <h3 className="uk-card-title">By customer_name</h3>
                     <app-rating readOnly="true" ratingValue="indexValue($event)"/>
@@ -50,9 +50,9 @@ export function MediDetailReviews() {
                 </div>
             </div>
 
-            <!-- This is the modal for edit -->
-            <div id="my-id-edit" uk-modal>
-                <div class="uk-modal-dialog uk-margin-auto-vertical">
+
+            <div id="my-id-edit" className="uk-modal">
+                <div className="uk-modal-dialog uk-margin-auto-vertical">
                     <div className="uk-modal-header">
                         <h2 className="uk-modal-title">Post a Review</h2>
                     </div>

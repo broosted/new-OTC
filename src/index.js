@@ -15,7 +15,11 @@ import 'uikit/dist/css/uikit.min.css';
 // loads the Icon plugin
 UIkit.use(Icons);
 
+import { BrowserRouter } from "react-router-dom";
+
 ReactDOM.render(
     <Provider store={store}>
+        <BrowserRouter>
         <App />
+        </BrowserRouter>
     </Provider>, document.getElementById("root"));
